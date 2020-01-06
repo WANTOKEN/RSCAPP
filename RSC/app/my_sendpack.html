@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/pulldown.css" />
+		<link href="../css/style.css" rel="stylesheet" />
+
+		<style>
+			.head-bar-zhanwei {
+				height: 8px;
+			}
+			
+			.Order {
+				background-color: white;
+			}
+			
+			.mui-control-content {
+				min-height: 657px;
+			}
+			
+			.mui-control-content .mui-loading {
+				margin-top: 50px;
+			}
+			
+			.mui-segmented-control-negative {
+				border: 1px solid #3388FF;
+			}
+			
+			.mui-segmented-control-negative .mui-control-item {
+				color: #FFCC00;
+				border-color: inherit;
+			}
+			
+			.mui-segmented-control-negative .mui-control-item.mui-active {
+				color: #fff;
+				background-color: #3388FF;
+			}
+			
+			.mui-segmented-control-negative.mui-segmented-control-inverted .mui-control-item.mui-active {
+				font-weight: bold;
+				color: #3388FF;
+				border-bottom: 1px solid #3388FF;
+				background: none;
+			}
+			
+			.mui-segmented-control-negative.mui-segmented-control-inverted~.mui-slider-progress-bar {
+				background-color: #3388FF;
+			}
+			
+			.order-item:nth-child(1) {
+				border: 0px solid #fff;
+			}
+			
+			.btn-reorder {
+				display: none;
+			}
+			
+			#sliderSegmentedControl {
+				position: fixed;
+				z-index: 999;
+				top: 44px;
+				background-color: white;
+			}
+			
+			#sliderProgressBar {
+				position: fixed;
+				z-index: 999;
+				top: 80px;
+			}
+			
+			.zhanwei {
+				height: 30px;
+			}
+			
+			.orderstatus {
+				font-size: 14px;
+				margin-right: 5px;
+				color: #FFCC33;
+				border: 1px solid #FFCC33;
+				padding: 3px 5px;
+			}
+			
+			.text-item {
+				padding: 2px 2px;
+				padding-left: 10px;
+				color: #3388FF;
+				font-weight: bold;
+			}
+			
+			.text-item span {
+				color: #666666;
+				font-weight: 100;
+			}
+			
+			.mui-card {
+				border-radius: 10px;
+			}
+		</style>
+	</head>
+
+	<body style="background-color:#FFFFFF;">
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title" style="color: #FFFFFF;">派件</h1>
+
+		</header>
+		<div class="mui-content">
+			<div class="Order">
+				<div id="slider" class="mui-slider">
+
+					<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-negative">
+						<a class="mui-control-item" href="#item1mobile">
+							待派件
+						</a>
+
+						<a class="mui-control-item" href="#item2mobile">
+							派件中
+						</a>
+
+						<a class="mui-control-item" href="#item3mobile">
+							异常派件
+						</a>
+						<a class="mui-control-item" href="#item4mobile">
+							已完成
+						</a>
+					</div>
+					<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-3"></div>
+					<div class="zhanwei">
+						<!--占位-->
+					</div>
+					<div class="mui-slider-group">
+
+						<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+
+							<div id="scroll1" class="mui-scroll-wrapper">
+								<div id="list1" class="mui-scroll">
+
+								</div>
+							</div>
+						</div>
+						<div id="item2mobile" class="mui-slider-item mui-control-content">
+							<div id="scroll2" class="mui-scroll-wrapper">
+								<div id="list2" class="mui-scroll">
+									<div class="mui-loading">
+										<div class="mui-spinner">
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div id="item3mobile" class="mui-slider-item mui-control-content">
+							<div id="scroll3" class="mui-scroll-wrapper">
+								<div id="list3" class="mui-scroll">
+									<div class="mui-loading">
+										<div class="mui-spinner">
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div id="item4mobile" class="mui-slider-item mui-control-content">
+							<div id="scroll4" class="mui-scroll-wrapper">
+								<div id="list4" class="mui-scroll">
+									<div class="mui-loading">
+										<div class="mui-spinner">
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="../js/config.js"></script>
+
+		<script>
+			mui.init({
+				swipeBack: false //启用右滑关闭功能
+			});
+			mui.plusReady(function() {
+
+				$('.mui-scroll-wrapper').scroll({
+					indicators: false //是否显示滚动条
+				});
+
+				refreshInfo();
+				/*
+				 * 定义数据
+				 */
+				var datalist2;
+				var datalist3;
+				var datalist4;
+				/*
+				 * 定义模板
+				 */
+				function getHtml($list, $flag) {
+					/*console.log(JSON.stringify($list));*/
+					var html = '';
+					mui.each($list, function(index, item) {
+						html += '<div class="mui-card">';
+						html += '<div class="mui-card-header">';
+						html += '<span class="mui-text-left"><span class="area">' + item.end_area + '</span></span>';
+						html += '<span class="orderStatus mui-text-right"><span class="orderstatus">' + item.orders_status + '</span></span>';
+						html += '</div>';
+						html += '<div class="mui-card-content">';
+						html += '<div class="text-item">快递单号：<span class="ordernum">' + item.ordernum + '</span></div>';
+						html += '<div class="text-item">收件联系：<span>' + item.rece_name + '</span></div>';
+						html += '<div class="text-item">联系电话：<span>' + item.rece_phone + '</span></div>';
+						html += '<div class="text-item">发起时间：<span>' + item.reg_time + '</span></div>';
+						html += '<div class="text-item">物件描述：<span>' + item.description + '</span></div>';
+						html += '<div class="text-item">派送地址：<span>' + item.end_address + '</span></div>';
+						html += '</div>';
+						html += '<div class="mui-card-footer" style="height: 40px;">';
+						html += '<span></span>';
+						html += '<button class="btn-look mui-btn mui-btn-royal" id="recBtn" data-oid="' + item.ordernum + '">派件</button>';
+						html += '</div>';
+						html += '</div>';
+
+					});
+
+					return html;
+				}
+				/*
+				 * 定义模板2
+				 */
+				function getHtml2($list, $flag) {
+					console.log(JSON.stringify($list));
+					var html = '';
+					mui.each($list, function(index, item) {
+						html += '<div class="mui-card">';
+						html += '<div class="mui-card-header">';
+						html += '<span class="mui-text-left"><span class="area">' + item.send_area + '</span></span>';
+						html += '<span class="orderStatus mui-text-right"><span class="orderstatus">' + item.orders_status + '</span></span>';
+						html += '</div>';
+						html += '<div class="mui-card-content">';
+						html += '<div class="text-item">快递单号：<span class="ordernum">' + item.ordernum + '</span></div>';
+						html += '<div class="text-item">操作人员：<span>' + item.post_man + '</span></div>';
+						html += '<div class="text-item">联系电话：<span>' + item.pman_sid + '</span></div>';
+						html += '<div class="text-item">派件时间：<span>' + item.send_time + '</span></div>';
+						html += '<div class="text-item">派件地址：<span>' + item.send_address + '</span></div>';
+						html += '</div>';
+						html += '<div class="mui-card-footer" style="height: 40px;">';
+						if($flag == '2') {
+							html += '<span><font style="color:#FFC25D;">确认后计入收益</font></span>';
+							html += '<button class="btn-look mui-btn mui-btn-primary ensurebtn" data-oid="' + item.ordernum + '">确认</button>';
+						} else {
+							html += '<span>件数<font style="color:#FFCC33;">+1</font></span>';
+							html += '<button class="btn-look mui-btn mui-btn-primary">查看</button>';
+						}
+
+						html += '</div>';
+						html += '</div>';
+
+					});
+
+					return html;
+				}
+
+				function refreshInfo() {
+					var account = localStorage.getItem('paccount');
+					var area = localStorage.getItem('workarea');
+						console.log(account + area);
+					$.ajax({
+						url: SERVER_URL + 'getSendOrders',
+						type: "post",
+						data: {
+							account: account,
+							area: area
+						},
+						dataType: "json",
+						success: function(data) {
+							console.log(JSON.stringify(data));
+							if(data[0].code == 200) {
+								$('#list1').html(getHtml(data[0].data1, 1));
+								console.log(data[0].data1.length); //获取数据长度
+								setHtmlHight(data[0].data1.length);
+								datalist2 = data[0].data2;
+								datalist3 = data[0].data3;
+								datalist4 = data[0].data4;
+							} else {
+								/*mui.alert('获取失败！');*/
+							}
+
+						},
+						error: function() {
+
+						},
+						complete: function() {}
+					});
+				}
+
+				function setHtmlHight(number) {
+					var height = window.innerHeight; //获取页面实际高度
+					var carboxheight = $('.mui-card').height() + 20; //获取DIV实际高度
+					var len = number * carboxheight;
+					$(".mui-control-content").css("min-height", (len < height ? height : len) + 'px');
+				}
+				/*
+				 * 根据参数设置订单状态
+				 */
+				function setOrder($ordernum, $status) {
+					var account = localStorage.getItem('paccount');
+					console.log($ordernum + account)
+					$.ajax({
+						url: SERVER_URL + 'setSendOrderStatus',
+						type: "post",
+						data: {
+							account: account,
+							status: $status,
+							ordernumber: $ordernum,
+						},
+						dataType: "json",
+						success: function(data) {
+							console.log(JSON.stringify(data));
+							if(data[0].code == 200) {
+								/*	mui.alert(data.msg);*/
+							} else {
+								mui.alert(data[0].msg);
+							}
+
+						},
+						error: function() {
+
+						}
+
+					});
+
+				}
+
+				var item2 = document.getElementById('item2mobile');
+				var item3 = document.getElementById('item3mobile');
+				var item4 = document.getElementById('item4mobile');
+				function openInput($ordernum){
+					mui.confirm('确定派件？', '派件提示', btnArray, function(e) {
+						if(e.index == 0) {
+							setTimeout(function() {
+								mui.openWindow({
+									id: 'input_send.html',
+									url: 'input_send.html',
+									show: {
+										aniShow: "slide-in-right", //页面显示动画，默认为”slide-in-right“；
+										duration: 300, //页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒
+										autoShow: true //页面loaded事件发生后自动显示，默认为true
+									},
+									extras: {
+										ordernum: $ordernum //自定义扩展参数，可以用来处理页面间传值
+									},
+									waiting: {
+										//title: '正在玩命搜索...' //等待对话框上显示的提示内容
+									}
+								});
+
+							}, 500);
+
+						} else {
+
+						}
+					});
+				}
+				$('#list1').on('click', '#recBtn', function(event) {
+					var elem = this;
+					var li = elem.parentNode.parentNode;
+					var ordernum = $(this).attr('data-oid').toString();
+					console.log(ordernum);
+					openInput(ordernum);
+
+				});
+
+				mui('#list2').on('tap', '.ensurebtn', function(event) {
+					var ordernum = $(this).attr('data-oid').toString();
+					console.log(ordernum);
+					setOrder(ordernum, "派件已完成");
+					var elem = this;
+					var li = elem.parentNode.parentNode;
+					li.parentNode.removeChild(li);
+
+				});
+				mui('#list3').on('tap', '#recBtn', function(event) {
+					var ordernum = $(this).attr('data-oid').toString();
+					console.log(ordernum);
+					openInput(ordernum);
+				});
+				var btnArray = ['确认', '取消'];
+				document.getElementById('slider').addEventListener('slide', function(e) {
+					if(e.detail.slideNumber === 1) {
+						if(item2.querySelector('.mui-loading')) {
+							setTimeout(function() {
+								$('#list2').html('');
+								$('#list2').html(getHtml2(datalist2, 2));
+								setHtmlHight(datalist2.length);
+							}, 500);
+						}
+					} else if(e.detail.slideNumber === 2) {
+						if(item3.querySelector('.mui-loading')) {
+							setTimeout(function() {
+								$('#list3').html('');
+								$('#list3').html(getHtml(datalist3, 3));
+								setHtmlHight(datalist3.length);
+							}, 500);
+						}
+
+					} else if(e.detail.slideNumber === 3) {
+						if(item4.querySelector('.mui-loading')) {
+							setTimeout(function() {
+								$('#list4').html('');
+								$('#list4').html(getHtml2(datalist4, 4));
+								setHtmlHight(datalist4.length);
+							}, 500);
+						}
+
+					}
+				});
+
+			});
+		</script>
+		<script src="../js/mui.pullToRefresh.js"></script>
+		<script src="../js/mui.pullToRefresh.material.js"></script>
+		<script type="text/javascript" src="../js/pulldown.js"></script>
+	</body>
+
+</html>

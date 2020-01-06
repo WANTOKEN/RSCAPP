@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>用户寄件</title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/pulldown.css" />
+		<link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/iconfont.css" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				font-size: 15px;
+				color: #000000;
+				outline: none;
+				-webkit-text-size-adjust: 100%;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				font-style: normal;
+				-webkit-tap-highlight-color: transparent;
+				font-family: sans-serif;
+			}
+			
+			div {
+				overflow: hidden;
+			}
+			
+			::-webkit-scrollbar {
+				display: none;
+			}
+			
+			.hui-center-title {
+				width: 100%;
+				margin-bottom: 10px;
+			}
+			
+			.hui-center-title h1 {
+				width: 50%;
+				margin: 0 auto;
+				text-align: center;
+				border-bottom: 1px solid #E3E3E3;
+				height: 50px;
+				line-height: 50px;
+				font-size: 17px;
+				overflow: hidden;
+				font-weight: 400;
+			}
+			
+			.hui-form {
+				background: #FFFFFF;
+			}
+			
+			.hui-form-items {
+				padding: 15px 10px;
+				border-bottom: 1px solid #F3F4F5;
+				position: relative;
+				display: -webkit-flex;
+				display: flex;
+				height: 50px;
+			}
+			
+			.hui-form-items-title {
+				width: 22%;
+				line-height: 22px;
+				height: 22px;
+				flex-shrink: 0;
+			}
+			
+			.hui-form-items input {
+				width: 100% !important;
+			}
+			
+			.hui-form-items:last-child {
+				border: none;
+			}
+			
+			.hui-form-items input {
+				height: 22px;
+				line-height: 22px;
+				border: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border-radius: 0;
+				border: 0;
+				background: #FFF;
+				width: 100%;
+				display: block;
+				padding: 0px;
+			}
+			
+			.hui-button {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border-radius: 3px;
+				border: 0;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				display: block;
+				font-size: 15px;
+				height: 42px;
+				line-height: 42px;
+				outline: 0;
+				overflow: hidden;
+				position: relative;
+				text-align: center;
+				color: #656B79;
+				background-color: #F6F8F9;
+				box-shadow: 0 0 1px #B8BBBF;
+				padding: 0px 16px;
+			}
+			
+			.hui-button * {
+				color: inherit;
+			}
+			
+			.hui-button:active {
+				background: #C8C8C8;
+			}
+			
+			.hui-button-large {
+				width: 100%;
+			}
+			
+			.hui-primary {
+				background: #3388FF !important;
+				color: #FFFFFF !important;
+			}
+			
+			.hui-primary:active {
+				background: #0066CC !important;
+			}
+			
+			.hui-form-items .hui-form-textarea {
+				width: 75% !important;
+			}
+			
+			textarea {
+				resize: none;
+				background: inherit;
+			}
+			/* textarea */
+			
+			.hui-form-textarea {
+				padding-top: 0px;
+			}
+			
+			.hui-form-textarea textarea {
+				width: 100%;
+				height: 80px;
+				background: #FAFAFA;
+				border: none;
+				padding: 5px;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			
+			.hui-form-textarea1 textarea {
+				width: 100%;
+				height: 80px;
+				background: #FAFAFA;
+				border: none;
+				padding: 5px;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+		</style>
+	</head>
+
+	<body style="background:#F4F5F6;">
+		<header class="mui-bar mui-bar-nav">
+			<span class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left" style="color: #FFFFFF;"></span>
+			<h1 class="mui-title" style="color: #FFFFFF;">寄件</h1>
+		</header>
+		<div class="mui-content">
+			<div style="margin:20px 10px; margin-bottom:15px;" class="hui-form" id="form1">
+				<div class="hui-form-items">
+					<div class="hui-form-items-title">寄件联系</div>
+					<input type="text" class="hui-input" placeholder="寄件人姓名" id="person1" />
+				</div>
+				<div class="hui-form-items">
+					<div class="hui-form-items-title">联系电话</div>
+					<input type="tel" class="hui-input" placeholder="寄件人联系电话" id="phone1" />
+				</div>
+				<div class="hui-form-items">
+					<div class="hui-form-items-title">收件联系</div>
+					<input type="text" class="hui-input" placeholder="收件人姓名" id="person2" />
+				</div>
+				<div class="hui-form-items">
+					<div class="hui-form-items-title">联系电话</div>
+					<input type="tel" class="hui-input" placeholder="收件人联系电话" id="phone2" />
+				</div>
+				<div class="hui-form-items" style="height: 100px;">
+					<div class="hui-form-items-title">发件地址</div>
+					<div style="">
+						<font id="cityResult3"></font>
+						<font id="begin_area" style="display: none;"></font>
+						<font id='showCityPicker3' class="mui-icon iconfont icon-shouhuodizhi" style="float: right;position: absolute; right: 10px;font-size: 20px;"></font>
+						<br />
+						<div class="hui-form-textarea1">
+							<textarea placeholder="填写乡镇街道信息" id="from_address"></textarea>
+						</div>
+					</div>
+
+				</div>
+				<div class="hui-form-items" style="height: 100px;">
+					<div class="hui-form-items-title">收件地址</div>
+					<div style="">
+						<font id="cityResult4"></font>
+						<font id="end_area" style="display: none;"></font>
+						<font id='showCityPicker4' class="mui-icon iconfont icon-shouhuodizhi" style="float: right;position: absolute; right: 10px;font-size: 20px;"></font>
+						<br />
+						<div class="hui-form-textarea1">
+							<textarea placeholder="填写乡镇街道信息" id="to_address"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div class="hui-form-items" style="height: 100px;">
+					<div class="hui-form-items-title">物品描述</div>
+					<div class="hui-form-textarea">
+						<textarea placeholder="请描述您的物品..." name="note" id="description"></textarea>
+					</div>
+				</div>
+				<div class="hui-form-items">
+					<div class="hui-form-items-title">寄件等级</div>
+					<div id="userlevel">普通邮客</div>
+				</div>
+
+			</div>
+			<div style="padding:10px; padding-top:20px;">
+				<button type="button" class="hui-button hui-button-large hui-primary" id="submit">确认寄件</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+		<script src="js/mui.picker.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+		<script src="js/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/config.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				var cityPicker3 = new mui.PopPicker({
+					layer: 4
+				});
+				cityPicker3.setData(cityData3);
+				var showCityPickerButton3 = document.getElementById('showCityPicker3');
+				var cityResult3 = document.getElementById('cityResult3');
+				var showCityPickerButton4 = document.getElementById('showCityPicker4');
+				var cityResult4 = document.getElementById('cityResult4');
+				showCityPickerButton3.addEventListener('tap', function(event) {
+					cityPicker3.show(function(items) {
+						var addressText = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text + " " + (items[3] || {}).text;
+						addressText = addressText.replace('undefined', '未知镇');
+						$('#begin_area').html(((items[2] || {}).text + (items[3] || {}).text).replace('undefined', '未知镇'));
+						cityResult3.innerText = addressText;
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+				showCityPickerButton4.addEventListener('tap', function(event) {
+					cityPicker3.show(function(items) {
+						var addressText = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text + " " + (items[3] || {}).text;
+						addressText = addressText.replace('undefined', '未知镇');
+						$('#end_area').html(((items[2] || {}).text + (items[3] || {}).text).replace('undefined', '未知镇'));
+						cityResult4.innerText = addressText;
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+				$("#submit").on('click', function() {
+					var account = localStorage.getItem('account');
+					console.log(account);
+					var person1 = $('#person1').val();
+					var phone1 = $('#phone1').val();
+					var person2 = $('#person2').val();
+					var phone2 = $('#phone2').val();
+					var address1 = $('#from_address').val();
+					var address2 = $('#to_address').val();
+					var description = $('#description').val();
+					var cityText1 = $('#cityResult3').text().replace(/\s/g, ''); //去掉空格
+					var begin_area = $('#begin_area').text();
+					var cityText2 = $('#cityResult4').text().replace(/\s/g, '');;
+					var end_area = $('#end_area').text();
+					console.log(cityText1 + address1 + ":" + begin_area);
+					var reg = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}$/;
+					if(!reg.test(phone1) || phone1.length == 0) {
+						mui.toast('寄件人手机号格式不正确');
+						return;
+					}
+					if(!reg.test(phone2) || phone2.length == 0) {
+						mui.toast('收件人手机号码格式不正确');
+						return;
+					}
+					if(begin_area == '' || end_area == '') {
+						mui.toast('请选择地区！');
+						return;
+					}
+					if(person1 == '' || person2 == '' || address1 == '' || address2 == '' || description == '') {
+						mui.toast('请填写完整！');
+						return;
+					}
+					var btnArray = ['确定', '取消'];
+					mui.confirm('是否寄件，确认？', '寄件提醒', btnArray, function(e) {
+						if(e.index == 0) {
+							console.log('寄件');
+							submitOrder(account, person1, phone1, person2, phone2, (cityText1 + address1), (cityText2 + address2), begin_area, end_area, description);
+						} else {
+							console.log('已取消');
+						}
+					});
+				});
+
+				function submitOrder($account, $per1, $phone1, $per2, $phone2, $from, $to, $begin_area, $end_area, $description) {
+					$.ajax({
+						url: SERVER_URL + 'addUserOrders',
+						type: "post",
+						data: {
+							account: $account,
+							per1: $per1,
+							phone1: $phone1,
+							per2: $per2,
+							phone2: $phone2,
+							from_Address: $from,
+							to_Address: $to,
+							begin_area: $begin_area,
+							end_area: $end_area,
+							description: $description
+						},
+						dataType: "json",
+						success: function(data) {
+							console.log(JSON.stringify(data));
+							if(data[0].code == 200) {
+								mui.toast(data[0].msg);
+								/*window.location.reload();*/
+							} else {
+								mui.toast(data[0].msg);
+							}
+
+						},
+						error: function() {
+							mui.toast('网络异常！');
+						},
+						complete: function() {}
+					});
+				}
+				refashInfo();
+
+				function refashInfo() {
+					console.log(localStorage.getItem('account'));
+					document.getElementById('person1').value = localStorage.getItem('name');
+					document.getElementById('phone1').value = localStorage.getItem('account');
+					var userlevel = localStorage.getItem('userlevel');
+					switch(userlevel) {
+						case "普通邮客":
+							$('#userlevel').html(userlevel);
+							break;
+						case "VIP邮客":
+							$('#userlevel').html(userlevel);
+							$("#submit").html("享9折寄件");
+							break;
+						case "集团邮客":
+							$('#userlevel').html(userlevel);
+							$("#submit").html("享8折寄件");
+							break;
+						default:
+							document.getElementById('userlevel').value = userlevel;
+							break;
+					}
+
+				}
+				
+				var first = null;
+				mui.back = function() {
+					var currentView = plus.webview.currentWebview();
+					plus.webview.close(currentView.id);
+				};
+
+			});
+		</script>
+		<script src="js/mui.pullToRefresh.js"></script>
+		<script src="js/mui.pullToRefresh.material.js"></script>
+		<script type="text/javascript" src="js/pulldown.js"></script>
+	</body>
+
+</html>

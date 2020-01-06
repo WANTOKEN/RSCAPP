@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link href="../css/style.css" rel="stylesheet" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				font-size: 15px;
+				color: #000000;
+				outline: none;
+				-webkit-text-size-adjust: 100%;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				font-style: normal;
+				-webkit-tap-highlight-color: transparent;
+				font-family: sans-serif;
+			}
+			
+			div {
+				overflow: hidden;
+			}
+			
+			::-webkit-scrollbar {
+				display: none;
+			}
+			
+			a {
+				color: #000000;
+				text-decoration: none;
+				-webkit-tap-highlight-color: rgba(200, 200, 200, 0.2);
+			}
+			
+			a:active {
+				color: #000000;
+			}
+			
+			img {
+				border: none;
+			}
+			
+			.hui-list {
+				padding: 0px;
+				border: 1px solid #E4E3E6;
+				border-left: 0;
+				border-right: 0;
+				background: #FFFFFF;
+			}
+			
+			.hui-list li {
+				position: relative;
+				display: flex;
+				width: 100%;
+				overflow: hidden;
+				height: 50px;
+			}
+			
+			.hui-list li>a,
+			.hui-list>a {
+				display: flex;
+				width: 100%;
+				height: 50px;
+				overflow: hidden;
+			}
+			
+			.hui-list li:active,
+			.hui-list>a:active {
+				background-color: #ECECEC;
+			}
+			
+			.hui-list-text {
+				line-height: 49px;
+				height: 49px;
+				width: 100%;
+				margin-left: 12px;
+				border-bottom: 1px solid #E4E3E6;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				display: flex;
+				justify-content: space-between;
+			}
+			
+			.hui-list-text-content {
+				width: 100%;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+			
+			.hui-list-icons {
+				margin: 14px 0px;
+				width: 40px;
+				text-align: center;
+				flex-shrink: 0;
+				font-size: 25px;
+				text-align: center;
+				line-height: 22px;
+				color: #3388FF;
+			}
+			
+			.hui-list-icons img {
+				width: 22px;
+				margin-left: 12px;
+			}
+			
+			.hui-list-info {
+				color: #999;
+				float: right;
+				padding-right: 6px !important;
+				font-size: 13px;
+				flex-shrink: 0;
+			}
+			
+			.hui-list-info * {
+				color: #999;
+				font-size: 13px;
+			}
+			
+			.hui-list li:last-child .hui-list-text,
+			.hui-list>a:last-child .hui-list-text {
+				border: 0;
+			}
+			
+			.hui-button-large {
+				width: 100%;
+			}
+			
+			.hui-button {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border-radius: 3px;
+				border: 0;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				display: block;
+				font-size: 15px;
+				height: 42px;
+				line-height: 42px;
+				outline: 0;
+				overflow: hidden;
+				position: relative;
+				text-align: center;
+				color: #656B79;
+				background-color: #F6F8F9;
+				box-shadow: 0 0 1px #B8BBBF;
+				padding: 0px 16px;
+			}
+			
+			.hui-button * {
+				color: inherit;
+			}
+		</style>
+	</head>
+
+	<body style="background:#F4F5F6;">
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title" style="color: #FFFFFF;">我的</h1>
+		</header>
+
+		<div class="mui-content">
+			<div class="hui-list" style="background:#FFFFFF; margin-top:28px;">
+				<a style="height:auto; height:80px; padding-bottom:8px;">
+					<div class="hui-list-icons" style="width:110px; height:80px;">
+						<img src="../img/logo3.png" style="width:66px; margin:0px; border-radius:50%;" />
+					</div>
+					<div class="hui-list-text" style="height:79px; line-height:79px;">
+						<div class="hui-list-text-content" id="pmanname">
+
+						</div>
+						<div class="hui-list-info">
+							<span  id="pamanaccount" ></span>
+							<span class="mui-icon mui-icon-arrowright"></span>
+						</div>
+					</div>
+				</a>
+				<a href="#">
+					<div class="hui-list-text">
+						<span>邮客等级 : <font id="pmanlevel"></font></span>
+					</div>
+				</a>
+				<a href="#">
+					<div class="hui-list-text">
+						<span>服务地区 : <font id="pmanarea"></font></span>
+					</div>
+				</a>
+				<a href="#">
+					<div class="hui-list-text">
+						<span>所在地址 : <font id="pmanaddress"></font></span>
+					</div>
+				</a>
+				<a href="#">
+					<div class="hui-list-text">
+						<span>账户余额 :<font>1000</font>元 | 总收入 : <font>2000</font></span>
+						<span class="mui-text-right" style="padding-right: 10px;color: #3388FF;">提现</span>
+					</div>
+				</a>
+			</div>
+			<div class="hui-list" style="background:#FFFFFF; margin-top:28px;">
+				<ul>
+					<li>
+						<a href="#">
+							<div class="hui-list-icons">
+								<img src="../img/logo3.png" />
+							</div>
+							<div class="hui-list-text">
+								收件工资
+								<div class="hui-list-info">
+									<span class="mui-icon mui-icon-arrowright"></span>
+								</div>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<div class="hui-list-icons">
+								<img src="../img/logo3.png" />
+							</div>
+							<div class="hui-list-text">
+								派件工资
+								<div class="hui-list-info">
+									<span class="mui-icon mui-icon-arrowright"></span>
+								</div>
+							</div>
+						</a>
+					</li>
+
+				</ul>
+			</div>
+			<div style="background:#FFFFFF; margin-top:28px;">
+				<button type="button" class="hui-button hui-button-large" id="exitbtn">
+        	<span class="hui-icons hui-icons-logoff"></span>退出系统
+       	</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="../js/config.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				refashInfo();
+				$("#exitbtn").on('click', function() {
+					plus.runtime.quit();
+				});
+
+
+				//监听页面传输数据
+				window.addEventListener('refashInfo', refashInfo); //刷新
+				function refashInfo(){
+					console.log(localStorage.getItem('pname'));
+					$('#pamanaccount').html(localStorage.getItem('paccount'));
+					$('#pmanname').html(localStorage.getItem('pname'));
+					$('#pmanlevel').html(localStorage.getItem("level"));
+					$('#pmanarea').html(localStorage.getItem('workarea'));
+					$('#pmanaddress').html(localStorage.getItem('workaddress'));
+				}
+			});
+		</script>
+				
+	</body>
+
+</html>

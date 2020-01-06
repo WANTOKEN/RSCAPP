@@ -1,0 +1,159 @@
+{
+  "login_foruser.html": {
+    "resources": [
+      "js/jquery-3.1.1.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css"
+    ],
+    "refer": [
+      "app/sendpack.html",
+      "main.html"
+    ]
+  },
+  "app/sendpack.html": {
+    "resources": [
+      "js/config.js"
+    ],
+    "refer": []
+  },
+  "main.html": {
+    "resources": [
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/mui.min.css",
+      "app/my_recevicepack.html"
+    ],
+    "refer": [
+      "app/my_sendpack.html",
+      "app/my_recevicepack.html",
+      "app/my_account.html",
+      "app/my_index.html"
+    ]
+  },
+  "app/my_sendpack.html": {
+    "resources": [
+      "js/jquery-3.1.1.js",
+      "js/config.js",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "css/pulldown.css",
+      "js/mui.pullToRefresh.js",
+      "js/pulldown.js",
+      "js/mui.pullToRefresh.material.js"
+    ],
+    "refer": [
+      "app/input_send.html"
+    ]
+  },
+  "app/my_recevicepack.html": {
+    "resources": [
+      "css/style.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/jquery-3.1.1.js",
+      "js/mui.pullToRefresh.js",
+      "js/pulldown.js",
+      "js/mui.pullToRefresh.material.js",
+      "css/pulldown.css",
+      "js/config.js"
+    ],
+    "refer": [
+      "app/input_recevice.html"
+    ]
+  },
+  "app/my_account.html": {
+    "resources": [
+      "img/logo3.png",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/jquery-3.1.1.js",
+      "js/mui.min.js",
+      "js/config.js"
+    ],
+    "refer": []
+  },
+  "app/my_index.html": {
+    "resources": [
+      "fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "app/input_recevice.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "js/jquery-3.1.1.js",
+      "js/mui.min.js",
+      "js/pulldown.js",
+      "js/mui.pullToRefresh.material.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "css/pulldown.css",
+      "fonts/mui.ttf",
+      "css/mui.poppicker.css",
+      "css/mui.picker.css",
+      "js/city.data-3.js",
+      "js/mui.picker.js",
+      "js/mui.poppicker.js",
+      "js/config.js"
+    ],
+    "refer": []
+  },
+  "login.html": {
+    "resources": [
+      "js/jquery-3.1.1.js",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/config.js"
+    ],
+    "refer": [
+      "reg.html",
+      "main.html"
+    ]
+  },
+  "reg.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "js/mui.picker.js",
+      "js/pulldown.js",
+      "js/mui.pullToRefresh.material.js",
+      "js/mui.poppicker.js",
+      "fonts/mui.ttf",
+      "css/iconfont.css",
+      "css/pulldown.css",
+      "css/mui.poppicker.css",
+      "css/mui.picker.css",
+      "js/city.data-3.js",
+      "js/jquery-3.1.1.js",
+      "css/style.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/config.js"
+    ],
+    "refer": []
+  },
+  "app/input_send.html": {
+    "resources": [
+      "js/mui.picker.js",
+      "js/mui.poppicker.js",
+      "fonts/mui.ttf",
+      "css/mui.poppicker.css",
+      "css/mui.picker.css",
+      "js/city.data-3.js",
+      "js/mui.pullToRefresh.js",
+      "js/jquery-3.1.1.js",
+      "js/pulldown.js",
+      "js/mui.pullToRefresh.material.js",
+      "css/style.css",
+      "css/pulldown.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/config.js"
+    ]
+  }
+}

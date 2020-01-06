@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>邮差登录</title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link href="css/style.css" rel="stylesheet" />
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				font-size: 15px;
+				color: #000000;
+				outline: none;
+				-webkit-text-size-adjust: 100%;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				font-style: normal;
+				-webkit-tap-highlight-color: transparent;
+				font-family: sans-serif;
+			}
+			
+			div {
+				overflow: hidden;
+			}
+			
+			::-webkit-scrollbar {
+				display: none;
+			}
+			
+			.hui-center-title {
+				width: 100%;
+				margin-bottom: 10px;
+			}
+			
+			.hui-center-title h1 {
+				width: 50%;
+				margin: 0 auto;
+				text-align: center;
+				border-bottom: 1px solid #E3E3E3;
+				height: 50px;
+				line-height: 50px;
+				font-size: 17px;
+				overflow: hidden;
+				font-weight: 400;
+			}
+			
+			.hui-form {
+				background: #FFFFFF;
+			}
+			
+			.hui-form-items {
+				padding: 15px 10px;
+				border-bottom: 1px solid #F3F4F5;
+				position: relative;
+				display: -webkit-flex;
+				display: flex;
+				height: 50px;
+			}
+			
+			.hui-form-items-title {
+				width: 22%;
+				line-height: 22px;
+				height: 22px;
+				flex-shrink: 0;
+			}
+			
+			.hui-form-items input {
+				width: 100% !important;
+			}
+			
+			.hui-form-items:last-child {
+				border: none;
+			}
+			
+			.hui-form-items input {
+				height: 22px;
+				line-height: 22px;
+				border: none;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border-radius: 0;
+				border: 0;
+				background: #FFF;
+				width: 100%;
+				display: block;
+				padding: 0px;
+			}
+			
+			.hui-button {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border-radius: 3px;
+				border: 0;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				display: block;
+				font-size: 15px;
+				height: 42px;
+				line-height: 42px;
+				outline: 0;
+				overflow: hidden;
+				position: relative;
+				text-align: center;
+				color: #656B79;
+				background-color: #F6F8F9;
+				box-shadow: 0 0 1px #B8BBBF;
+				padding: 0px 16px;
+			}
+			
+			.hui-button * {
+				color: inherit;
+			}
+			
+			.hui-button:active {
+				background: #C8C8C8;
+			}
+			
+			.hui-button-large {
+				width: 100%;
+			}
+			
+			.hui-primary {
+				background: #3388FF !important;
+				color: #FFFFFF !important;
+			}
+			
+			.hui-primary:active {
+				background: #0066CC !important;
+			}
+		</style>
+	</head>
+
+	<body style="background:#F4F5F6;">
+		<header class="mui-bar mui-bar-nav">
+			<!--<span class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left" style="color: #FFFFFF;"></span>-->
+			<h1 class="mui-title" style="color: #FFFFFF;">邮差登录</h1>
+			<span class="mui-pull-right" style="color: #FFFFFF;line-height: 44px;" id="reg">注册</span>
+
+		</header>
+		<div class="mui-content">
+			<div style="margin:20px 10px; margin-bottom:15px;" class="hui-form" id="form1">
+				<div class="hui-form-items">
+					<div class="hui-form-items-title">手机号码</div>
+					<input type="text" class="hui-input" placeholder="如：183xxxxxxxx" checkType="phone" checkMsg="手机号码为11位数字" id="account" />
+				</div>
+				<div class="hui-form-items">
+					<div class="hui-form-items-title">登录密码</div>
+					<input type="password" class="hui-input" placeholder="登录密码" checkType="string" id="password" checkData="6,20" checkMsg="密码应为6-20个字符" />
+				</div>
+			</div>
+			<div style="padding:10px; padding-top:80px;">
+				<button type="button" class="hui-button hui-button-large hui-primary" id="submit">立即登录</button>
+
+			</div>
+		</div>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+		<script type="text/javascript" src="js/config.js"></script>
+		<script>
+			mui.init();
+			mui.plusReady(function() {
+				refashInfo();
+				$("#reg").on('click', function() {
+					mui.openWindow({
+						url: 'reg.html',
+						id: 'reg',
+						preload: true,
+						show: {
+							aniShow: 'pop-in'
+						},
+						styles: {
+							popGesture: 'hide'
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				});
+				$("#submit").on('click', function() {
+					var account1 = $('#account').val();
+					var password1 = $('#password').val();
+					var reg = /^13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}$/;
+					if(!reg.test(account1) || account1.length != 11) {
+						 mui.toast('手机号格式不正确');
+						 return;
+					}
+					if(password1==''){
+						 mui.toast('密码不能为空');
+						 return;
+					}
+					$.ajax({
+						url: SERVER_URL+'pmanLogin',
+						type: "post",
+						data: {
+							account: account1,
+							password: password1
+						},
+						dataType: "json",
+						success: function(data) {
+							console.log(JSON.stringify(data));
+							if(data[0].code==200){
+								localStorage.setItem('paccount', account1);
+								localStorage.setItem('ppassword', password1);
+								localStorage.setItem('pname', data[0].data[0].p_name);
+								localStorage.setItem('workaddress', data[0].data[0].workaddress);
+								localStorage.setItem('workarea', data[0].data[0].workarea);
+								localStorage.setItem('salary', data[0].data[0].sale_total);
+								localStorage.setItem('level', data[0].data[0].level);
+								mui.toast(data[0].msg);
+								toMain();
+							}else
+							{
+								mui.alert(data[0].msg);
+							}
+							
+						},
+						error: function() {
+							 mui.toast('网络异常！');
+						},
+						complete: function() {}
+					});
+					
+					
+				});
+				function toMain(){
+					//跳转到页面
+					mui.openWindow({
+						url: 'main.html',
+						id: 'main.html',
+						preload: true,
+						show: {
+							aniShow: 'pop-in'
+						},
+						styles: {
+							popGesture: 'hide'
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				}
+				//监听页面传输数据
+				window.addEventListener('refashInfo', refashInfo); //刷新
+				function refashInfo(){
+					console.log(localStorage.getItem('paccount'));
+					document.getElementById('account').value = localStorage.getItem('paccount');
+					document.getElementById('password').value = localStorage.getItem('ppassword');
+				}
+			});
+		</script>
+	</body>
+
+</html>
